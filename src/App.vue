@@ -25,8 +25,6 @@ export default {
     return {
       swipeable: new Swipeable({offset: 2}),
       currentPosition: 0,
-      leftSidebarOffset: 0,
-      rightSidebarOffset: 0,
       isSidebarOpened: true,
     }
   },

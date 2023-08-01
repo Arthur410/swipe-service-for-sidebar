@@ -30,23 +30,26 @@ export default {
   },
   methods: {
     handleLeftTouch(e, x) {
+      const blockInstance = e.target;
+      const blockInstanceWidth = blockInstance.offsetWidth
+      
       if (x + this.currentPosition > 0) {
-        e.target.style.left = `0`
-      } else if (Math.abs(x + this.currentPosition) >  e.target.offsetWidth - e.target.offsetWidth / 2) {
-        e.target.style.left = `-${e.target.offsetWidth}px`
+        blockInstance.style.left = `0`
+      } else if (Math.abs(x + this.currentPosition) >  blockInstanceWidth / 2) {
+        blockInstance.style.left = `-${e.target.offsetWidth}px`
         this.isSidebarOpened = false;
       } else {
-        console.log(e.target)
-        e.target.style.left = `${x + this.currentPosition}px`
+        blockInstance.style.left = `${x + this.currentPosition}px`
         console.log('свайп на ', x, 'px влево')
       }
     },
     handleRightTouch(e, x) {
+      const blockInstance = e.target;
       if (x + this.currentPosition > 0) {
-        e.target.style.left = `0`
+        blockInstance.style.left = `0`
         return;
       }
-      e.target.style.left = `${x + this.currentPosition}px`
+      blockInstance.style.left = `${x + this.currentPosition}px`
       console.log('свайп на ', x, 'px вправо')
     },
     touchStart(e) {
@@ -61,6 +64,7 @@ export default {
     },
     toggleSidebar(e) {
       const sidebarNode = e.target.offsetParent
+      
       if (this.isSidebarOpened) {
         sidebarNode.style.left = `-${sidebarNode.offsetWidth}px`
         this.isSidebarOpened = false;
